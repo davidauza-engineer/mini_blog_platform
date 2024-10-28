@@ -1,5 +1,8 @@
 source "https://rubygems.org"
 
+# Application Styles
+gem "bootstrap"
+gem "sassc-rails"
 # Authentication system
 gem "devise"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"

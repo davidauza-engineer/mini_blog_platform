@@ -1,0 +1,9 @@
+<div class="jumbotron mt-4">
+  <h1 class="display-4">Welcome to Mini Blog Platform</h1>
+  <p class="lead">This is a simple blogging platform where you can share your thoughts and ideas.</p>
+  <hr class="my-4">
+  <% unless user_signed_in? %>
+    <p>Sign up now to start creating your own blog posts and engage with the community.</p>
+    <a class="btn btn-primary btn-lg" href="<%= new_user_registration_path %>" role="button">Register</a>
+  <% end %>
+</div>

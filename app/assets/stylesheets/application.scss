@@ -13,3 +13,25 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap";
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    margin: 0 0 0 auto;
+    justify-content: flex-end;
+}
+
+nav ul li {
+    margin-right: 2rem;
+}
+
+.btn-link {
+    background: none;
+    border: none;
+    padding: 0;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+}

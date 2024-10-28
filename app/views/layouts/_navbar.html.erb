@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand ps-4" href="/">Mini Blog Platform</a>
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav ml-auto">
+      <% nav_item_class = 'nav-item' %>
+      <% nav_link_class = 'nav-link' %>
+
+      <% if user_signed_in? %>
+        <li class="<%= nav_item_class %>">
+          <%= link_to 'Edit Profile', edit_user_registration_path, class: nav_link_class %>
+        </li>
+        <li class="<%= nav_item_class %>">
+          <%= form_with url: destroy_user_session_path, method: :delete, class: nav_link_class do %>
+            <button type="submit" class="<%= nav_link_class %> btn-link">Logout</button>
+          <% end %>
+        </li>
+      <% else %>
+        <li class="<%= nav_item_class %>">
+          <%= link_to 'Register', new_user_registration_path, class: nav_link_class %>
+        </li>
+        <li class="<%= nav_item_class %>">
+          <%= link_to 'Login', new_user_session_path, class: nav_link_class %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
