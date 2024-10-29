@@ -104,6 +104,7 @@ GEM
     drb (2.2.1)
     erubi (1.13.0)
     execjs (2.10.0)
+    ffi (1.17.0)
     ffi (1.17.0-aarch64-linux-gnu)
     ffi (1.17.0-arm-linux-gnu)
     ffi (1.17.0-arm64-darwin)
@@ -138,6 +139,7 @@ GEM
       net-smtp
     marcel (1.0.4)
     mini_mime (1.1.5)
+    mini_portile2 (2.8.7)
     minitest (5.25.1)
     msgpack (1.7.3)
     net-imap (0.5.0)
@@ -150,6 +152,9 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.3)
+    nokogiri (1.16.7)
+      mini_portile2 (~> 2.8.2)
+      racc (~> 1.4)
     nokogiri (1.16.7-aarch64-linux)
       racc (~> 1.4)
     nokogiri (1.16.7-arm-linux)
@@ -313,6 +318,7 @@ PLATFORMS
   aarch64-linux
   arm-linux
   arm64-darwin
+  ruby
   x86-linux
   x86_64-darwin-23
   x86_64-linux
@@ -337,6 +343,9 @@ DEPENDENCIES
   turbo-rails
   tzinfo-data
   web-console
+
+RUBY VERSION
+   ruby 3.2.2p53
 
 BUNDLED WITH
    2.5.14
