@@ -11,15 +11,19 @@
 
 To run the application using Docker, follow these steps:
 
-1. **Build the Docker containers**:
+1. **Set up environment variables**
+   ```shell
+   cp .env.example .env
+   ```
+2. **Build the Docker containers**:
    ```shell
    docker compose build
    ```
-2. **Start the Docker containers**:
+3. **Start the Docker containers**:
    ```shell
    docker compose up
    ```
-3. **Access the application**: Open your browser and navigate to
+4. **Access the application**: Open your browser and navigate to
    [http://localhost:3000](http://localhost:3000).
 
 ## 🚀 Deployment
