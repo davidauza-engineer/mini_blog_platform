@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CommentNotificationJob
-  include Sidekiq::Worker
+  include Sidekiq::Job
 
   queue_as :default
 
