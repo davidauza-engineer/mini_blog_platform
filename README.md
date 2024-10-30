@@ -7,7 +7,7 @@
 ## 🐳 Running with Docker
 
 > This setup will run your Rails application in a Docker container with a
-> PostgreSQL database.
+> PostgreSQL database, Redis and Sidekiq.
 
 To run the application using Docker, follow these steps:
 
