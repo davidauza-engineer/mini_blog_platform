@@ -7,3 +7,8 @@
     <a class="btn btn-primary btn-lg" href="<%= new_user_registration_path %>" role="button">Register</a>
   <% end %>
 </div>
+
+<!-- Posts Section -->
+<% if user_signed_in? %>
+  <%= render template: 'posts/index' %>
+<% end %>

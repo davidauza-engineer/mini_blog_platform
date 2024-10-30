@@ -1,0 +1,15 @@
+<%= form_with(model: post, local: true) do |form| %>
+  <div class="mb-3">
+    <%= form.label :title, class: 'form-label' %>
+    <%= form.text_field :title, class: 'form-control', placeholder: 'Enter the title' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :body, class: 'form-label' %>
+    <%= form.text_area :body, class: 'form-control', rows: 5, placeholder: 'Write your post here...' %>
+  </div>
+
+  <div class="d-grid gap-2">
+    <%= form.submit 'Save Post', class: 'btn btn-primary' %>
+  </div>
+<% end %>

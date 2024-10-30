@@ -13,7 +13,7 @@ RSpec.describe "Users", type: :request do
   describe "POST /users" do
     it "creates a new user" do
       expect {
-        post user_registration_path, params: { user: { email: "test@example.com", password: "password", password_confirmation: "password" } }
+        post user_registration_path, params: { user: attributes_for(:user) }
       }.to change(User, :count).by(1)
     end
   end
@@ -26,7 +26,7 @@ RSpec.describe "Users", type: :request do
   end
 
   describe "POST /users/sign_in" do
-    let(:user) { User.create(email: "test@example.com", password: "password", password_confirmation: "password", confirmed_at: Time.now) }
+    let(:user) { create(:user) }
 
     it "logs in the user" do
       post user_session_path, params: { user: { email: user.email, password: user.password } }
@@ -35,7 +35,7 @@ RSpec.describe "Users", type: :request do
   end
 
   describe "DELETE /users/sign_out" do
-    let(:user) { User.create(email: "test@example.com", password: "password", password_confirmation: "password", confirmed_at: Time.now) }
+    let(:user) { create(:user) }
 
     before do
       sign_in user
