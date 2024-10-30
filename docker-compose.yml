@@ -20,6 +20,8 @@ services:
     depends_on:
       - db
       - redis
+    environment:
+      DATABASE_URL: postgres://postgres:password@db:5432/myapp_development
 
   web:
     build: .
