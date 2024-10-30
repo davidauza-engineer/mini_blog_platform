@@ -6,6 +6,6 @@ class NotificationMailer < ApplicationMailer
   def comment_notification(comment)
     @comment = comment
     @post = comment.post
-    mail(to: @comment.author.email, subject: "New Comment on Your Post")
+    mail(to: @post.author.email, subject: "New Comment on Your Post")
   end
 end
