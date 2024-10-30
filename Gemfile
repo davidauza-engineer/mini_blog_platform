@@ -74,8 +74,10 @@ group :development do
 end
 
 group :test do
-  # Model testing gem
-  gem "shoulda-matchers", "~> 6.0"
   # Controller testing gem
   gem "rails-controller-testing"
+  # Sidekiq testing gem
+  gem "rspec-sidekiq"
+  # Model testing gem
+  gem "shoulda-matchers", "~> 6.0"
 end

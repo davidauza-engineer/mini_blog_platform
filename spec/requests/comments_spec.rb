@@ -20,6 +20,12 @@ RSpec.describe "Comments requests", type: :request do
       }.to change(Comment, :count).by(1)
     end
 
+    it "enqueues a CommentNotificationJob" do
+      expect {
+        post post_comments_path(post_instance), params: { comment: comment_params }
+      }.to change(CommentNotificationJob.jobs, :size).by(1)
+    end
+
     it "redirects to the post" do
       post post_comments_path(post_instance), params: { comment: comment_params }
       expect(response).to redirect_to(post_path(post_instance))

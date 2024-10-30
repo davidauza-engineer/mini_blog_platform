@@ -10,6 +10,7 @@ class CommentsController < ApplicationController
     @comment = @post.comments.build(comment_params)
     @comment.author = current_user
     if @comment.save
+      CommentNotificationJob.perform_async(@comment.id)
       redirect_to @post, notice: "Comment was successfully created."
     else
       redirect_to @post, alert: "Error creating comment."
