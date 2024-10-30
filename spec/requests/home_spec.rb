@@ -5,8 +5,9 @@ require 'rails_helper'
 RSpec.describe "Home requests", type: :request do
   describe "GET /index" do
     context "when user is signed in" do
+      let(:user) { create(:user) }
+
       before do
-        user = create(:user)
         sign_in user
         @posts = create_list(:post, 3, author: user)
       end
@@ -26,6 +27,20 @@ RSpec.describe "Home requests", type: :request do
       it "renders the index template" do
         get root_path
         expect(response).to render_template("home/index")
+      end
+
+      context "when searching for posts" do
+        let!(:search_post) { create(:post, title: 'UniqueTitle', body: 'UniqueBody', author: user) }
+
+        it "returns the matching posts" do
+          get root_path, params: { query: 'Unique' }
+          expect(response.body).to include('UniqueTitle')
+        end
+
+        it "returns a successful response" do
+          get root_path, params: { query: 'Unique' }
+          expect(response).to have_http_status(:success)
+        end
       end
     end
 

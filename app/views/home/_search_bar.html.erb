@@ -1,0 +1,10 @@
+<div class="container mt-4">
+  <form class="form-inline" method="get" action="<%= root_path %>">
+    <div class="input-group w-100">
+      <input type="text" name="query" class="form-control" placeholder="Search posts..." value="<%= params[:query] %>">
+      <div class="input-group-append">
+        <button class="btn btn-outline-primary" type="submit">Search</button>
+      </div>
+    </div>
+  </form>
+</div>

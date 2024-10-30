@@ -10,5 +10,6 @@
 
 <!-- Posts Section -->
 <% if user_signed_in? %>
+  <%= render 'search_bar' %>
   <%= render template: 'posts/index' %>
 <% end %>

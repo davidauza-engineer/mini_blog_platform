@@ -2,7 +2,11 @@
 
 class HomeController < ApplicationController
   def index
-    @posts = Post.all if user_signed_in?
+    if user_signed_in? && params[:query].present?
+      @posts = Post.search_by_title_and_body(params[:query])
+    else
+      @posts = Post.all
+    end
     render layout: "application", template: "home/index"
   end
 end
