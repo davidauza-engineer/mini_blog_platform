@@ -1,63 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <style>
-      body {
-          font-family: Arial, sans-serif;
-          background-color: #f4f4f4;
-          margin: 0;
-          padding: 0;
-      }
-
-      .container {
-          background-color: #ffffff;
-          margin: 20px auto;
-          padding: 20px;
-          border-radius: 8px;
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      .email-container {
           max-width: 600px;
+          margin: 0 auto;
+          padding: 20px;
+          border: 1px solid #ddd;
+          border-radius: 5px;
+          background-color: #f9f9f9;
       }
-
-      .header {
+      .email-header {
           text-align: center;
-          padding-bottom: 20px;
-          border-bottom: 1px solid #dddddd;
+          margin-bottom: 20px;
       }
-
-      .header h1 {
-          margin: 0;
-          color: #333333;
+      .email-body {
+          font-size: 16px;
+          line-height: 1.5;
       }
-
-      .content {
-          padding: 20px 0;
-      }
-
-      .content p {
-          margin: 0 0 10px;
-          color: #555555;
-      }
-
-      .footer {
+      .email-footer {
           text-align: center;
-          padding-top: 20px;
-          border-top: 1px solid #dddddd;
-          color: #999999;
+          margin-top: 20px;
       }
   </style>
 </head>
 <body>
-<div class="container">
-  <div class="header">
-    <h1>New Comment Notification</h1>
+<div class="email-container">
+  <div class="email-header">
+    <h2>New Comment Notification</h2>
   </div>
-  <div class="content">
+  <div class="email-body">
     <p>Hello <%= author_of(@post) %>,</p>
     <p>You have received a new comment on your post titled "<%= @post.title %>".</p>
     <p><strong>Comment:</strong> <%= @comment.body %></p>
   </div>
-  <div class="footer">
-    <p>Best regards,<br>Your App Team</p>
+  <div class="email-footer">
+    <p>Best regards,<br>Mini Blog Platform Team</p>
   </div>
 </div>
 </body>
