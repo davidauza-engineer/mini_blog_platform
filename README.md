@@ -26,6 +26,8 @@ To run the application using Docker, follow these steps:
 4. **Access the application**: Open your browser and navigate to
    [http://localhost:3000](http://localhost:3000).
 
+**Note**: The application will be seeded with the entities at `db/seeds.rb`
+
 ## 🚀 Deployment
 
 The app is deployed
