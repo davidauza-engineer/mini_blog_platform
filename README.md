@@ -34,3 +34,5 @@ The app is deployed
 at [Heroku](https://guarded-dusk-82007-3d4643b2b311.herokuapp.com/).
 
 ![Screenshot](https://github.com/user-attachments/assets/a2b687f6-b1b0-4d62-9ebd-19457e28ae5f)
+
+✉️ **Note**: Emails might be sent to the spam folder.
