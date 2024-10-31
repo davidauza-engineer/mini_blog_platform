@@ -47,5 +47,9 @@ module MiniBlogPlatform
       url: ENV["REDIS_URL"],
       namespace: "myapp::cache"
     }
+    config.action_controller.perform_caching = true
+
+    # rack attack
+    config.middleware.use Rack::Attack
   end
 end

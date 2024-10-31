@@ -237,6 +237,8 @@ GEM
       activesupport (>= 3.0.0)
     racc (1.8.1)
     rack (3.1.8)
+    rack-attack (6.7.0)
+      rack (>= 1.0, < 4)
     rack-session (2.0.0)
       rack (>= 3.0.0)
     rack-test (2.1.0)
@@ -438,6 +440,7 @@ DEPENDENCIES
   pg_search
   puma (>= 5.0)
   pundit
+  rack-attack
   rails (~> 7.2.1, >= 7.2.1.2)
   rails-controller-testing
   redis-rails
