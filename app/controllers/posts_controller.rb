@@ -7,7 +7,7 @@ class PostsController < ApplicationController
 
   def show
     @comment = Comment.new
-    @comments = @post.comments.page(params[:page])
+    @comments = @post.comments.includes(:author).page(params[:page])
   end
 
   def new
@@ -43,7 +43,7 @@ class PostsController < ApplicationController
   private
 
   def set_post
-    @post = Post.includes(:author, :comments).find(params[:id])
+    @post = Post.includes(:author).find(params[:id])
   end
 
   def authorize_user!
