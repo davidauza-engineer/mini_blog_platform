@@ -7,8 +7,7 @@ class CommentsController < ApplicationController
   before_action :authorize_user!, only: [ :edit, :update, :destroy ]
 
   def create
-    @comment = @post.comments.build(comment_params)
-    @comment.author = current_user
+    @comment = Comments::Builder.new(post: @post, author: current_user, params: comment_params).call
     if @comment.save
       CommentNotificationJob.perform_async(@comment.id)
       redirect_to @post, notice: "Comment was successfully created."
