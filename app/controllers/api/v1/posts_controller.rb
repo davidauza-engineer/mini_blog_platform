@@ -3,6 +3,8 @@
 module Api
   module V1
     class PostsController < ApplicationController
+      include Postable
+
       protect_from_forgery with: :null_session
 
       rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
@@ -10,6 +12,7 @@ module Api
 
       before_action :set_post, only: [ :show, :update, :destroy ]
       before_action :set_user, only: [ :show, :update, :destroy ]
+      before_action :authorize_user!, only: [ :update, :destroy ]
 
       # GET /api/v1/posts
       def index
@@ -34,7 +37,6 @@ module Api
 
       # PATCH/PUT /api/v1/posts/:id
       def update
-        authorize @post
         if @post.update(post_params)
           render json: @post
         else
@@ -44,15 +46,10 @@ module Api
 
       # DELETE /api/v1/posts/:id
       def destroy
-        authorize @post
         @post.destroy
       end
 
       private
-
-      def set_post
-        @post = Post.includes(:author).find(params[:id])
-      end
 
       def set_user
         @current_user = @post.author

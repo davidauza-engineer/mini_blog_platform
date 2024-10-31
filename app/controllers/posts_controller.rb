@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
+  include Postable
+
   before_action :authenticate_user!
   before_action :set_post, only: [ :show, :edit, :update, :destroy ]
   before_action :authorize_user!, only: [ :edit, :update, :destroy ]
@@ -41,14 +43,6 @@ class PostsController < ApplicationController
   end
 
   private
-
-  def set_post
-    @post = Post.includes(:author).find(params[:id])
-  end
-
-  def authorize_user!
-    authorize @post
-  end
 
   def post_params
     params.require(:post).permit(:title, :body, :image)
