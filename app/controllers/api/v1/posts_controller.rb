@@ -14,9 +14,11 @@ module Api
       # GET /api/v1/posts
       def index
         if params[:ids]
-          @posts = Post.where(id: params[:ids].split(",")).page(params[:page])
+          @posts = Post.includes(:author, :comments)
+                       .where(id: params[:ids].split(","))
+                       .page(params[:page])
         else
-          @posts = Post.all.page(params[:page])
+          @posts = Post.includes(:author, :comments).page(params[:page])
         end
         render json: @posts, include: :comments
       end
@@ -55,7 +57,7 @@ module Api
       private
 
       def set_post
-        @post = Post.find(params[:id])
+        @post = Post.includes(:author, :comments).find(params[:id])
       end
 
       def set_user

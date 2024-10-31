@@ -43,7 +43,7 @@ class PostsController < ApplicationController
   private
 
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.includes(:author, :comments).find(params[:id])
   end
 
   def authorize_user!
