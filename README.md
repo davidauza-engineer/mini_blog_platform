@@ -33,7 +33,7 @@ To run the application using Docker, follow these steps:
 The app is deployed
 at [Heroku](https://guarded-dusk-82007-3d4643b2b311.herokuapp.com/).
 
-![Screenshot](https://github.com/user-attachments/assets/a2b687f6-b1b0-4d62-9ebd-19457e28ae5f)
+<img width="1920" alt="Screenshot 2024-10-31 at 4 51 54 AM" src="https://github.com/user-attachments/assets/9215fc3e-8e7e-46b0-a6b6-7b6b3d57e093">
 
 ✉️ **Note**: Emails might be sent to the spam folder.
 
