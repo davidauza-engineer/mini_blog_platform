@@ -9,6 +9,8 @@ gem "sassc-rails"
 gem "devise"
 # Background jobs processing
 gem "sidekiq"
+# Redis functionality
+gem "redis-rails"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.2.1", ">= 7.2.1.2"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
@@ -74,6 +76,8 @@ group :development do
 end
 
 group :test do
+  # Feature testing gem
+  gem "capybara"
   # Controller testing gem
   gem "rails-controller-testing"
   # Sidekiq testing gem

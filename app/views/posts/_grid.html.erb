@@ -1,0 +1,14 @@
+<div class="row">
+  <% @posts.each do |post| %>
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title"><%= post.title %></h5>
+          <h6 class="card-subtitle mb-2 text-muted">By <%= author_of(post) %></h6>
+          <p class="card-text"><%= truncate(post.body, length: 100) %></p>
+          <%= link_to 'Read More', post_path(post), class: 'btn btn-outline-primary' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

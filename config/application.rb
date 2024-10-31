@@ -41,5 +41,11 @@ module MiniBlogPlatform
 
     # queue adapter
     config.active_job.queue_adapter = :sidekiq
+
+    # cache store
+    config.cache_store = :redis_store, {
+      url: ENV["REDIS_URL"],
+      namespace: "myapp::cache"
+    }
   end
 end
