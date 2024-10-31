@@ -11,6 +11,7 @@ class Post < ApplicationRecord
 
   belongs_to :author, class_name: "User"
   has_many :comments, dependent: :destroy
+  has_one_attached :image
 
   validates :title, presence: true
   validates :body, presence: true

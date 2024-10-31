@@ -3,6 +3,11 @@
     <div class="card-body">
       <h1 class="card-title"><%= @post.title %></h1>
       <p class="text-muted">Author: <%= author_of(@post) %></p>
+      <p>
+        <% if @post.image.attached? %>
+          <%= image_tag @post.image %>
+        <% end %>
+      </p>
       <p class="card-text"><%= @post.body %></p>
       <% if policy(@post).edit? %>
         <div class="d-flex justify-content-between">

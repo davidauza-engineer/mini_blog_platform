@@ -33,26 +33,39 @@ RSpec.describe "Posts requests", type: :request do
 
   describe "POST /create" do
     let(:post_params) { attributes_for(:post) }
+    let(:image) { fixture_file_upload(Rails.root.join('spec/fixtures/files/test_image.png'), 'image/png') }
 
     it "creates a new post" do
       expect {
-        post posts_path, params: { post: post_params }
+        post posts_path, params: { post: post_params.merge(image: image) }
       }.to change(Post, :count).by(1)
     end
 
+    it "attaches an image to the post" do
+      post posts_path, params: { post: post_params.merge(image: image) }
+      expect(Post.last.image).to be_attached
+    end
+
     it "redirects to the created post" do
-      post posts_path, params: { post: post_params }
+      post posts_path, params: { post: post_params.merge(image: image) }
       expect(response).to redirect_to(post_path(Post.last))
     end
   end
 
   describe "PATCH /update" do
     let(:new_attributes) { { title: "Updated Title" } }
+    let(:new_image) { fixture_file_upload(Rails.root.join('spec/fixtures/files/new_test_image.png'), 'image/png') }
 
     it "updates the requested post" do
       patch post_path(post_instance), params: { post: new_attributes }
       post_instance.reload
       expect(post_instance.title).to eq("Updated Title")
+    end
+
+    it "updates the image of the post" do
+      patch post_path(post_instance), params: { post: new_attributes.merge(image: new_image) }
+      post_instance.reload
+      expect(post_instance.image).to be_attached
     end
 
     it "redirects to the post" do

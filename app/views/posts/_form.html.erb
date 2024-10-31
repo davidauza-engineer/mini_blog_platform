@@ -9,7 +9,12 @@
     <%= form.text_area :body, class: 'form-control', rows: 5, placeholder: 'Write your post here...' %>
   </div>
 
-  <div class="d-grid gap-2">
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+  </div>
+
+  <div class="d-grid gap-2 mt-4">
     <%= form.submit 'Save Post', class: 'btn btn-primary' %>
   </div>
 <% end %>
