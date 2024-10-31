@@ -13,13 +13,7 @@ module Api
 
       # GET /api/v1/posts
       def index
-        if params[:ids]
-          @posts = Post.includes(:comments)
-                       .where(id: params[:ids].split(","))
-                       .page(params[:page])
-        else
-          @posts = Post.includes(:comments).page(params[:page])
-        end
+        @posts = Posts::Fetcher.new(page: params[:page], ids: params[:ids], public_api: true).call
         render json: @posts, include: :comments
       end
 
