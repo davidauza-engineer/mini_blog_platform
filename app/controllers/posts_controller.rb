@@ -33,7 +33,7 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to @post, notice: "Post was successfully updated."
     else
-      render :edit
+      redirect_to edit_post_path, alert: "Error updating post."
     end
   end
 
