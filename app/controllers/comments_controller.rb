@@ -23,7 +23,7 @@ class CommentsController < ApplicationController
     if @comment.update(comment_params)
       redirect_to @post, notice: "Comment was successfully updated."
     else
-      render :edit
+      redirect_to edit_post_comment_path(@post, @comment), alert: "Error updating comment."
     end
   end
 
