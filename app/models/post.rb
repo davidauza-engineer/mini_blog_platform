@@ -15,4 +15,6 @@ class Post < ApplicationRecord
 
   validates :title, presence: true
   validates :body, presence: true
+
+  paginates_per 9
 end

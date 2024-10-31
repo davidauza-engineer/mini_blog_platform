@@ -14,9 +14,9 @@ module Api
       # GET /api/v1/posts
       def index
         if params[:ids]
-          @posts = Post.where(id: params[:ids].split(","))
+          @posts = Post.where(id: params[:ids].split(",")).page(params[:page])
         else
-          @posts = Post.all
+          @posts = Post.all.page(params[:page])
         end
         render json: @posts, include: :comments
       end

@@ -12,6 +12,9 @@
     <% else %>
       <%= render 'posts/grid', posts: @posts %>
     <% end %>
+    <div class="mb-5">
+      <%= paginate @posts %>
+    </div>
   <% else %>
     <div class="alert alert-info" role="alert">
       No posts available.

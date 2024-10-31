@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe "Api::V1::Posts requests", type: :request do
-  let!(:posts) { create_list(:post, 10, author: author) }
+  let!(:posts) { create_list(:post, 18, author: author) }
   let(:post_id) { posts.first.id }
   let(:author) { create(:user, :author) }
 
@@ -12,7 +12,7 @@ RSpec.describe "Api::V1::Posts requests", type: :request do
       before { get '/api/v1/posts' }
 
       it "returns posts" do
-        expect(JSON.parse(response.body).count).to eq(10)
+        expect(JSON.parse(response.body).count).to eq(9)
       end
 
       it "returns status code 200" do
@@ -23,8 +23,20 @@ RSpec.describe "Api::V1::Posts requests", type: :request do
     context "when fetching specific posts by ids" do
       before { get "/api/v1/posts", params: { ids: posts.map(&:id).join(',') } }
 
-      it "returns the specified posts" do
-        expect(JSON.parse(response.body).count).to eq(10)
+      it "returns the specified posts in the first page" do
+        expect(JSON.parse(response.body).count).to eq(9)
+      end
+
+      it "returns status code 200" do
+        expect(response).to have_http_status(200)
+      end
+    end
+
+    context "when paginating posts" do
+      before { get '/api/v1/posts', params: { page: 2 } }
+
+      it "returns the second page of posts" do
+        expect(JSON.parse(response.body).count).to eq(9)
       end
 
       it "returns status code 200" do

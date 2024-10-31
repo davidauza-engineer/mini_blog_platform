@@ -6,10 +6,11 @@ RSpec.describe "Home requests", type: :request do
   describe "GET /index" do
     context "when user is signed in" do
       let(:user) { create(:user) }
+      let(:posts) { create_list(:post, 20, author: user) }
 
       before do
         sign_in user
-        @posts = create_list(:post, 3, author: user)
+        posts
       end
 
       it "returns a successful response" do
@@ -19,7 +20,7 @@ RSpec.describe "Home requests", type: :request do
 
       it "includes the posts in the response body" do
         get root_path
-        @posts.each do |post|
+        posts.first(10).each do |post|
           expect(response.body).to include(post.title)
         end
       end
@@ -27,6 +28,18 @@ RSpec.describe "Home requests", type: :request do
       it "renders the index template" do
         get root_path
         expect(response).to render_template("home/index")
+      end
+
+      context "when paginating posts" do
+        it "returns the first page of posts" do
+          get root_path, params: { page: 1 }
+          expect(response.body).to match(/#{posts.first.title}/)
+        end
+
+        it "returns the second page of posts" do
+          get root_path, params: { page: 2 }
+          expect(response.body).to match(/#{posts[10].title}/)
+        end
       end
 
       context "when searching for posts" do

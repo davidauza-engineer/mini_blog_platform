@@ -36,7 +36,7 @@
   </div>
 
   <div class="row">
-    <% @post.comments.each do |comment| %>
+    <% @comments.each do |comment| %>
       <div class="col-12 mb-3">
         <div class="card">
           <div class="card-body">
@@ -53,5 +53,6 @@
         </div>
       </div>
     <% end %>
+    <%= paginate @comments %>
   </div>
 </div>
