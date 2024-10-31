@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe "Api::V1::Posts requests", type: :request do
   let!(:posts) { create_list(:post, 10, author: author) }
   let(:post_id) { posts.first.id }
-  let(:author) { create(:user) }
+  let(:author) { create(:user, :author) }
 
   describe "GET /api/v1/posts" do
     context "when fetching all posts" do
@@ -54,7 +54,7 @@ RSpec.describe "Api::V1::Posts requests", type: :request do
       end
 
       it "returns a not found message" do
-        expect(response.body).to match(/Couldn't find Post/)
+        expect(response.body).to match(/Record not found/)
       end
     end
   end
@@ -77,12 +77,12 @@ RSpec.describe "Api::V1::Posts requests", type: :request do
     context "when the request is invalid" do
       before { post '/api/v1/posts', params: { post: { title: 'Foobar' } } }
 
-      it "returns status code 422" do
-        expect(response).to have_http_status(422)
+      it "returns status code 404" do
+        expect(response).to have_http_status(:unprocessable_entity)
       end
 
       it "returns a validation failure message" do
-        expect(JSON.parse(response.body)['body']).to match([ "can't be blank" ])
+        expect(JSON.parse(response.body)["author"]).to match_array([ "must exist" ])
       end
     end
   end

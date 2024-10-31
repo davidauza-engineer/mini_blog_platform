@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe "Posts requests", type: :request do
-  let(:user) { create(:user) }
+  let(:user) { create(:user, :author) }
   let(:post_instance) { create(:post, author: user) }
 
   before do

@@ -1,3 +1,9 @@
+<% if user_signed_in? && current_user.guest? %>
+  <div class="alert alert-info">
+    You are currently a guest. <%= link_to 'Create your first post', new_post_path %> to become an author and edit your
+    posts and comments.
+  </div>
+<% end %>
 <div class="jumbotron mt-4">
   <h1 class="display-4">Welcome to Mini Blog Platform</h1>
   <p class="lead">This is a simple blogging platform where you can share your thoughts and ideas.</p>

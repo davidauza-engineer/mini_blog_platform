@@ -19,6 +19,7 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
+      current_user.update(role: "author") unless current_user.author?
       redirect_to @post, notice: "Post was successfully created."
     else
       redirect_to new_post_path, alert: "Error creating post."
@@ -45,7 +46,7 @@ class PostsController < ApplicationController
   end
 
   def authorize_user!
-    redirect_to posts_path, alert: "Not authorized" if @post.author != current_user
+    authorize @post
   end
 
   def post_params

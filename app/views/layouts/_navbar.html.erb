@@ -7,6 +7,11 @@
 
       <% if user_signed_in? %>
         <li class="<%= nav_item_class %>">
+          <span class="<%= nav_link_class %>">
+            <%= current_user.name || current_user.email %> - <%= current_user.role.capitalize %>
+          </span>
+        </li>
+        <li class="<%= nav_item_class %>">
           <%= link_to 'Edit Profile', edit_user_registration_path, class: nav_link_class %>
         </li>
         <li class="<%= nav_item_class %>">

@@ -4,7 +4,7 @@
       <h1 class="card-title"><%= @post.title %></h1>
       <p class="text-muted">Author: <%= author_of(@post) %></p>
       <p class="card-text"><%= @post.body %></p>
-      <% if @post.author == current_user %>
+      <% if policy(@post).edit? %>
         <div class="d-flex justify-content-between">
           <%= link_to 'Edit', edit_post_path(@post), class: 'btn btn-warning' %>
           <%= form_with url: post_path(@post), method: :delete, data: { confirm: 'Are you sure?' }, class: 'd-inline' do %>
@@ -36,7 +36,7 @@
         <div class="card">
           <div class="card-body">
             <p><%= comment.body %> - <strong><%= author_of(comment) %></strong></p>
-            <% if comment.author == current_user %>
+            <% if policy(comment).edit? %>
               <div class="d-flex justify-content-between">
                 <%= link_to 'Edit', edit_post_comment_path(@post, comment), class: 'btn btn-sm btn-warning' %>
                 <%= form_with url: post_comment_path(@post, comment), method: :delete, data: { confirm: 'Are you sure?' }, class: 'd-inline' do %>

@@ -44,7 +44,7 @@ class CommentsController < ApplicationController
   end
 
   def authorize_user!
-    redirect_to @post, alert: "Not authorized" if @comment.author != current_user
+    authorize @comment
   end
 
   def comment_params

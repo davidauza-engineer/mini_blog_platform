@@ -5,7 +5,11 @@ module Api
     class PostsController < ApplicationController
       protect_from_forgery with: :null_session
 
+      rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+      rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+
       before_action :set_post, only: [ :show, :update, :destroy ]
+      before_action :set_user, only: [ :show, :update, :destroy ]
 
       # GET /api/v1/posts
       def index
@@ -34,6 +38,7 @@ module Api
 
       # PATCH/PUT /api/v1/posts/:id
       def update
+        authorize @post
         if @post.update(post_params)
           render json: @post
         else
@@ -43,6 +48,7 @@ module Api
 
       # DELETE /api/v1/posts/:id
       def destroy
+        authorize @post
         @post.destroy
       end
 
@@ -52,8 +58,20 @@ module Api
         @post = Post.find(params[:id])
       end
 
+      def set_user
+        @current_user = @post.author
+      end
+
       def post_params
         params.require(:post).permit(:title, :body, :author_id)
+      end
+
+      def user_not_authorized
+        render json: { error: "Not authorized" }, status: :forbidden
+      end
+
+      def record_not_found
+        render json: { error: "Record not found" }, status: :not_found
       end
     end
   end
