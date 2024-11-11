@@ -95,7 +95,7 @@ GEM
       aws-eventstream (~> 1, >= 1.0.2)
     base64 (0.2.0)
     bcrypt (3.1.20)
-    benchmark (0.3.0)
+    benchmark (0.4.0)
     bigdecimal (3.1.8)
     bindex (0.8.1)
     bootsnap (1.18.4)
@@ -106,7 +106,7 @@ GEM
     brakeman (6.2.2)
       racc
     builder (3.3.0)
-    bullet (7.2.0)
+    bullet (8.0.0)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.11)
     capybara (3.40.0)
@@ -370,7 +370,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    securerandom (0.3.1)
+    securerandom (0.3.2)
     shoulda-matchers (6.4.0)
       activesupport (>= 5.2.0)
     sidekiq (7.3.5)
