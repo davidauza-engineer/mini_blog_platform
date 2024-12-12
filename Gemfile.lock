@@ -132,7 +132,7 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.5.1)
-    dotenv (3.1.4)
+    dotenv (3.1.5)
     drb (2.2.1)
     erubi (1.13.0)
     execjs (2.10.0)
